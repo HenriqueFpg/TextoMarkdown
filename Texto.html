@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Texto.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="reconhecimento-facial-com-raspberry-pi">Reconhecimento Facial com Raspberry Pi</h1>
+<p>A ideia aqui é contar como foi implementado um sistema de reconhecimento facial, utilizando um Raspberry Pi 3, para controlar o acesso nos andares da CWI Software.</p>
+<p>Para isso utilizamos um módulo de câmera específico para esta placa de desenvolvimento, que captura os frames de imagem. Foram usadas as bibliotecas <em>opencv</em> e <em>dlib</em> para buscar rostos nestes frames e mapear 64 pontos de referência, como olhos, nariz, boca e queixo. Para decidir se o rosto encontrado pertence a alguém cadastrado, é calculada a distância entre os pontos encontrados e os salvos no banco de dados. Esta distância deve estar abaixo de um valor fixo para definirmos com segurança que o rosto pertence à pessoa cadastrada.</p>
+<p>Se você ainda não leu o artigo da Diandra falando sobre isso, corre lá e dá uma olhada, ela explica o problema e o processo de solucioná-lo é um pré-requisito para este artigo, já que vamos utilizar as mesmas tecnologias.</p>
+<p> </p>
+<hr>
+<h2 id="o-raspberry-pi">O Raspberry Pi</h2>
+<p>Antes de tudo, vamos ver o porquê do <em>Raspberry</em> ser uma alternativa para nosso projeto:</p>
+<ul>
+<li>
+<p>É rápido, o modelo 3 b+ que estamos usando possui um processador quad-core de 1.4GHz e 1GB de memória RAM;</p>
+</li>
+<li>
+<p>É barato, custa menos de 300 reais e consome muito menos energia comparado a qualquer computador convencional;</p>
+</li>
+<li>
+<p>É capaz de acionar a porta diretamente com seu conjunto de <em>pinos GPIO</em> (vamos falar sobre isso logo mais);</p>
+</li>
+<li>
+<p>É pequeno e discreto;</p>
+</li>
+<li>
+<p>Possui um conector específico para o módulo de câmera, conectado diretamente na GPU, consumindo muito menos recursos da CPU se comparado a uma câmera USB tradicional;</p>
+</li>
+<li>
+<p><strong>E o mais importante</strong>: É uma solução all-in-one, não vai depender da rede ethernet, ou qualquer serviço externo para reconhecer rostos e abrir portas.</p>
+</li>
+</ul>
+<p> </p>
+<p><img src="https://miro.medium.com/max/1400/1*QcTQJq0cELgVqD8JhBJtIQ.jpeg" alt="Raspberry"></p>
+<p> </p>
+<hr>
+<h2 id="o-problema-das-solu%C3%A7%C3%B5es-prontas">O problema das soluções prontas</h2>
+<p>A Diandra explicou como funciona a lib <em>face_recognition</em>, que faz exatamente o que queremos fazer, então porque não utilizá-la aqui? Bem, há alguns pontos negativos a considerar: esta lib até funciona no Raspberry Pi, porém demora 10 segundos para processar uma imagem, encontrar um rosto e compará-lo com outros rostos.</p>
+<p>Outro ponto negativo é que ela faz a comparação dos rostos em memória, então teríamos de carregar todos os rostos do banco de dados de uma vez só e consumir uma memória absurda neste processo, ou fazer uma consulta por vez ao banco, para cada rosto, gastando ainda mais tempo.</p>
+<p>Pensando nisso decidimos usar diretamente as libs que a face_recognition utiliza por baixo dos panos: <em>opencv</em>, <em>dlib</em>.</p>
+<hr>
+<h2 id="planejando-a-solu%C3%A7%C3%A3o">Planejando a solução</h2>
+<p>Primeiramente vamos analisar o <em>hardware</em>: uma <strong>PiCamera</strong>, o módulo de câmera oficial da Fundação Raspberry Pi, envia um stream de vídeo constante ao Raspberry Pi. Este faz todo o processamento necessário para detectar e comparar se um rosto pertence a um colaborador da CWI cadastrado; caso positivo, um relé é acionado através da GPIO e este relé abre a porta.</p>
+<p> </p>
+<p><img src="https://miro.medium.com/max/1400/1*Ipl7LVBqC-AVCesCbelmpw.png" alt="Esquema"></p>
+<p>Todos os dispositivos estão conectados diretamente, deixando a solução independente da rede ethernet. O acionamento do relé pelo Raspberry é possível graças aos pinos GPIO (general-purpose input/output), com estes podemos ler ou definir níveis lógicos em tempo de execução, permitindo programas se comunicarem com o mundo externo.</p>
+<p>No Raspberry foi instalado o sistema operacional Raspbian, uma versão do Debian feita exclusivamente para funcionar nesta placa de desenvolvimento. O banco de dados utilizado foi o Postgres, já que permite o uso de arrays como tipo de variável, algo importante uma vez que cada rosto consiste em um array de 128 floats. Isto permite que cada linha de nossa tabela possua toda a informação necessária para comparar um rosto salvo com um detectado pela câmera. Ele está instalado localmente no Raspberry.</p>
+<p>Para detectar rostos no frame da câmera utilizamos a opencv, invés da dlib usada na <em>face_recognition</em>. Podemos ver abaixo uma comparação de velocidade entre elas, mostrando que a opencv consegue ser 6 vezes mais rápida que a dlib.</p>
+<p> </p>
+<p><img src="https://miro.medium.com/max/640/1*DGwlK3a4VwgWtbdr4dJgmQ.gif" alt="Demonstração1">
+<img src="https://miro.medium.com/max/640/1*9rslbftQiZg4rPFwuStZUw.gif" alt="Demonstração2"></p>
+<p><em>Opencv (esquerda ~18 FPS) Dlib (direita ~3 FPS)</em></p>
+<p> </p>
+<p>Com a posição do rosto podemos gerar os pontos de   marcação essenciais para nossa comparação, existem dois modelos padrão: um que identifica 5 pontos e outro que  leva em consideração 68 pontos.</p>
+<p> </p>
+<p><img src="https://miro.medium.com/max/848/1*wrI-d7fWqkgSebD-mnckCA.png" alt="Comparação"></p>
+<p><em>Modelo de 64 pontos e 5 pontos faciais, respectivamente</em></p>
+<p> </p>
+<p>Quantos mais pontos identificados por rosto, mais precisa será nossa comparação, por conta disso utilizamos o modelo de 68 pontos na solução com Raspberry Pi.</p>
+<p>Usamos a <em>dlib</em> ainda para gerar os encodings do rosto, e são estes arrays únicos que utilizamos para comparar o rosto captado pela câmera com todos os rostos salvos. Esta comparação acontece no banco de dados, através de uma procedure que calcula a distância euclidiana entre todos os valores do array. O rosto que apresentar a menor distância é utilizado para comparação de semelhança, se esta distância for menor que um fator pré determinado é seguro afirmar que são a mesma pessoa.</p>
+<p>Na situação de alguém ser identificado, um pino GPIO é setado para nível lógico alto que aciona o relé, e este a porta.</p>
+<p>O cadastro de rostos é feito por um tablet; ele captura uma foto para inserir os encodings do rosto no banco. Optamos por realizar o merge desses dois bancos, onde importamos os rostos e usuários inseridos pelo tablet para o Raspberry Pi e exportamos o log de entradas. Isto para não sobrecarregar a placa com requisições de cadastro.</p>
+<p> </p>
+<hr>
+<h2 id="resultados">Resultados</h2>
+<p>Inicialmente instalamos o Raspberry Pi no 4° andar sem um monitor, agora ele está no 2º andar e adicionamos um monitor. No momento já temos 197 usuários cadastrados. O tempo médio para captar um frame de imagem, detectar um rosto nele, gerar 128 encodings e compará-los com todos os outros salvos no banco fica abaixo de 1 segundo (média de 0,85s).</p>
+<p>O processo de buscar a imagem da câmera gasta um tempo praticamente irrisório se comparado aos seguintes (0,000114s), já o método da opencv que procura rostos nesta imagem consome um pouco mais de 0,02 segundos. Estas duas ações estão sempre sendo executadas e seu tempo de execução é quem define a quantidade de FPS do sistema.</p>
+<p>Quando um rosto é detectado, são gastos 0,7 segundos para gerar seus encodings e mais 0,12s para compará-los no banco de dados.</p>
+<p> </p>
+<p><img src="https://miro.medium.com/max/1196/1*Oh6hJdNK9tQK-xQ2YN-ZHg.png" alt="Gráfico1">
+<em>Proporção de tempo gasto para cada tarefa</em></p>
+<p> </p>
+<p>Durante o dia temos uma média de 330 acessos, com pico as 8:00 e cerca de 90 usuários distintos utilizando o sistema todo os dias:</p>
+<p> </p>
+<p><img src="https://miro.medium.com/max/1196/1*uZrLmCGnSxkvSW3DSSY1xw.png" alt="Gráfico2">
+<em>Histograma com o número médio de entradas em um dia</em></p>
+<p> </p>
+<p>Para utilizar o sistema basta cadastrar uma foto do seu rosto no tablet que está no Núcleo de Tecnologia.</p>
+
+</body>
+</html>
